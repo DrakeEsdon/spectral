@@ -70,10 +70,7 @@ export default createRulesetFunction<unknown, Options>(
       // if our resolver fails to resolve them,
       // ajv is unlikely to do it either, since it won't have access to the whole document, but a small portion of it
       if (!rule.resolved || !(ex instanceof MissingRefError)) {
-        results.push({
-          message: ex.message,
-          path,
-        });
+        throw new Error('Unexpected error with $ref');
       }
     }
 
